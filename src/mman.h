@@ -25,7 +25,7 @@
 #define MADV_WILLNEED   0x03
 #define MADV_DONTNEED   0x04
 
-inline void* mmap(void* addr, size_t length, int prot, int flags, int fd, size_t offset) {
+inline void *mmap(void *addr, size_t length, int prot, int flags, int fd, size_t offset) {
     if (prot & ~(PROT_READ | PROT_WRITE | PROT_EXEC))
         return MAP_FAILED;
     if (fd == -1) {
@@ -69,13 +69,13 @@ inline void* mmap(void* addr, size_t length, int prot, int flags, int fd, size_t
     if (flags & MAP_PRIVATE)
         dwDesiredAccess |= FILE_MAP_COPY;
 
-    void* map = MapViewOfFile(fm, dwDesiredAccess, dwOffsetHigh, dwOffsetLow, length);
+    void *map = MapViewOfFile(fm, dwDesiredAccess, dwOffsetHigh, dwOffsetLow, length);
     CloseHandle(fm);
 
     return (map != nullptr) ? map : MAP_FAILED;
 }
 
-inline int munmap(void* addr, size_t length) {
+inline int munmap(void *addr, size_t length) {
     if (UnmapViewOfFile(addr))
         return 0;
 
@@ -83,7 +83,7 @@ inline int munmap(void* addr, size_t length) {
     return -1;
 }
 
-inline int msync(void* addr, size_t length, int flags) {
+inline int msync(void *addr, size_t length, int flags) {
     if (FlushViewOfFile(addr, length))
         return 0;
 
@@ -91,7 +91,7 @@ inline int msync(void* addr, size_t length, int flags) {
     return -1;
 }
 
-inline int madvise(void* addr, size_t length, int advice) {
+inline int madvise(void *addr, size_t length, int advice) {
     return 0;   // Unsupported on Windows
 }
 

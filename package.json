@@ -1,20 +1,20 @@
 {
-    "name": "mmap-io",
+    "name": "@ipinfo/mmap-io",
     "version": "1.1.7",
     "license": "MIT",
     "author": {
-        "name": "Oscar Campbell",
-        "email": "oscar@campbell.nu",
-        "url": "https://github.com/ozra"
+        "name": "Uman Shahzad",
+        "email": "uman@ipinfo.io",
+        "url": "https://github.com/ipinfo"
     },
-    "description": "io.js/node.js mmap bindings revisited.",
-    "homepage": "https://github.com/ozra/mmap-io",
+    "description": "node.js mmap bindings.",
+    "homepage": "https://github.com/ipinfo/mmap-io",
     "keywords": [
         "low level",
         "file",
         "memory mapped",
         "mmap",
-        "advise",
+        "madvise",
         "sync",
         "shared memory",
         "C++",
@@ -22,10 +22,10 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/ozra/mmap-io.git"
+        "url": "https://github.com/ipinfo/mmap-io.git"
     },
     "bugs": {
-        "url": "http://github.com/ozra/mmap-io/issues"
+        "url": "http://github.com/ipinfo/mmap-io/issues"
     },
     "main": "mmap-io.js",
     "files": [
@@ -41,12 +41,12 @@
     ],
     "scripts": {
         "clean": "rm -rf build dist",
-        "build": "npm run build-addon && npm run build-es && npm run test",
+        "build": "npm run build-addon && npm run build-es",
         "build-addon": "node-gyp configure && node-gyp rebuild",
-        "build-es": "./node_modules/typescript/bin/tsc && cp ./dist/mmap-io.d.ts ./",
+        "build-es": "./node_modules/.bin/tsc && cp ./dist/mmap-io.d.ts ./",
         "prepare": "npm run build",
         "install": "npm run build-addon",
-        "test": "./node_modules/livescript/bin/lsc -o ./dist/ -b -c ./src/test.ls && ((which nodejs && nodejs ./dist/test.js) || node ./dist/test.js)",
+        "test": "./node_modules/.bin/lsc -o ./dist/ -b -c ./src/test.ls && node ./dist/test.js",
         "watch": "while true; do (npm run build; inotifywait -qre close_write,moved_to --exclude '\\.git' ./src/; ) done;"
     },
     "devDependencies": {

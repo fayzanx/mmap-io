@@ -12,7 +12,7 @@ say = (...args) -> console.log.apply console, args
 
 say "mmap in test is", mmap
 
-{PAGESIZE, PROT_READ, PROT_WRITE, MAP_SHARED} = mmap
+{PAGESIZE, PROT_READ, PROT_WRITE, MAP_SHARED, MAP_ANONYMOUS} = mmap
 
 try
     say "mmap.PAGESIZE = ", mmap.PAGESIZE, "tries to overwrite it with 47"
@@ -61,14 +61,12 @@ try
 catch e
     say "deliberate out of bounds, caught exception - does this thing happen?", e.code, 'err-obj = ', e
 
-
 # Ok, I won't write a segfault catcher cause that would be evil, so this will simply be uncatchable.. /ORC
 #try
 #    say "Try to write to read buffer"
 #    buffer[0] = 47
 #catch e
 #    say "caught deliberate segmentation fault", e.code, 'err-obj = ', e
-
 
 # 5-arg call
 buffer = mmap.map(size, PROT_READ, MAP_SHARED, fd, 0)
@@ -115,16 +113,17 @@ catch e
     say "Pass wrong page-size as offset - caught deliberate exception: #{e.message}"
     #assert.equal(e.code, constants.EINVAL)
 
-
 # faulty param to advise should throw exception
 fd = fs.open-sync(process.argv[1], 'r')
 try
     buffer = mmap.map(size, PROT_READ, MAP_SHARED, fd)
-    mmap.advise buffer, "fuck off"
+    mmap.advise buffer, "advising!"
 catch e
     say "Pass faulty arg to advise() - caught deliberate exception: #{e.message}"
     #assert.equal(e.code, constants.EINVAL)
 
+say ">2gb length test to ensure no overflow problems during type-conversion."
+bigmem = mmap.map(3221225472, PROT_READ, MAP_SHARED .|. MAP_ANONYMOUS, -1)
 
 # Write tests
 
@@ -160,9 +159,8 @@ try
         assert.equal r-buffer[i], val
 
     say "Write/read verification seemed to work out"
-
 catch e
-    say "Something fucked up in the write/read test::", e.message
+    say "Something wrong in the write/read test::", e.message
 
 try
     say "sync() tests x 4"
@@ -178,17 +176,14 @@ try
 
     say "4. Does explicit sync with no additional arguments"
     mmap.sync w-buffer
-
 catch e
-    say "Something fucked up for syncs::", e.message
+    say "Something wrong with syncs::", e.message
 
 try
     fs.unlink-sync test-file
-
 catch e
     say "Failed to remove test-file", test-file
 
 say "\nAll done"
-
 
 process.exit 0
