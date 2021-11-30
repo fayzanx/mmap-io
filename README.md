@@ -1,119 +1,19 @@
-# Mmap for Node.js
+# mmap utilities for nodejs
 
-mmap(2) / madvise(2) / msync(2) / mincore(2) for Node.js.
+`mmap(2)` / `madvise(2)` / `msync(2)` / `mincore(2)` for nodejs.
 
 **NOTE**: this is a fork of https://github.com/ozra/mmap-io as that repo is
 unmaintained.
 
-`mmap`-ing is by nature potentially blocking, and _should not be used in
-concurrent serving/processing applications_, but rather has it's niche where
-multiple processes are working on the same giant sets of data (thereby sparing
-physical memory, and load times if the kernel does it's job for read ahead),
-preferably multiple readers and single or none concurrent writer, to not spoil
-the gains by loads of spin-locks, mutexes or such.
+# Installation
 
-# News and Updates
-
-### 2021-11-29: version 2.0.0
-
-- basic cleanups over docs/code.
-- fixed bug where `mmap` wouldn't work with lengths or offsets greater than
-  2GB; this was due to some bad type-casting.
-
-### 2019-07-09/B: version 1.1.3, ..., 1.1.6
-
-- rewritten the C++-code to catch up with V8/Nan breaking changes for node.js
-  `12.*`, which also removes all warnings in earlier versions.
-- refactored in to wrapper functions for extracting values, so should new
-  breaking changes come in later versions, it will be quicker to adjust.
-- major "package.json" mistakes. Unless running build manually, the js-files
-  where never packaged, nor built. Now whitelisted in package.json.
-- major mistake 2: when they finally where packaged, they we're killed off when
-  the C++ module was rebuilt on installment. So. Finally: js-files are now
-  built to "dist", and the binary into "build". This way the TypeScript and
-  LiveScript aren't required for end user
-
-### 2019-07-09/A: version 1.1.1
-
-- when replacing GNU Make, for some reason I used `yarn` in "package.json" —
-  which may have failed builds for those not having it installed (and then not
-  building "es-release"), and completely missing the point of getting rid of
-  Make.
-- updated README to reflect new build command (`npm run build`) (_should only
-  ever be needed if you clone from git and contribute_)
-- added back the "main" entry in package.json. Hell of a blunder! Tests changed
-  to import from root so they fail without it.
-- the never before tested example code here in the README, has been ran and
-  corrected, thanks to @LiamKarlMitchell
-
-### 2019-03-08: version 1.1.0
-
-- rewrote the es part of the _lib_ code from LiveScript to TypeScript. The
-  prudent thing to do in a lib. The test remains in LS.
-- `offs_t` changed to `size_t` because of bitwidth goofyness. Thanks to @bmarkiv
-- removed dependency on GNU Make by adding build commands to "package.json".
-  Might help those on windows platform who didn't have it installed. However
-  they still rely on a horde of "common posix utils", so your setup might be
-  lacking anyway then.
-- note that there are some compile warnings because of changes in C++ API's in
-  NAN/V8, ignored for now in contemplation whether to switch to node-addon-api
-  (napi for C++), since call overhead isn't an issue in this library,
-  everything considered.
-
-### 2018-01-16: version 1.0.0
-
-- bumped the version to 1.0.0 since, well, why not.
-- changed deprecated calls from `ForceSet` to `DefineOwnProperty`
-- general source noise cleanups
-- fixed compilation errors for newer nodejs. Thanks to @djulien
-- windows-specific problems (#5, #6), and more, fixed. Thanks to @bkmartinjr
-- updated README clarifying _Contribution Guidelines_
-
-### 2017-03-08: version 0.11.1
-
-- compilation fixes 10.8 OSX fix. Thanks to @arrayjam
-
-### 2016-07-21: version 0.10.1
-
-- `incore` fix for Mac OS. Thanks to @rustyconover
-
-### 2016-07-14: version 0.10.0
-
-- `incore` added. Thanks to @rustyconover
-
-### 2015-10-10: version 0.9.4
-
-- Compilation on Mac should work now. Thanks to @aeickhoff
-
-### 2015-10-01: version 0.9.3
-
-- Windows compatibility added. Thanks to @toxicwolf
-- Rewrote the bindings to Nan 2.0.9 API version (V8/io/Node hell...)
-    - Had to remove the error _codes_ to get it working in the time I had
-      available (or rather - didn't have..) —
-      error messages are still there — with code in message instead. Though,
-      usually nothing goes wrong, so only the test cares ;-)
-- Added some helpful targets in Makefile `human_errors`, `ls` only, `build`
-  only, etc. (useful if you wanna hack the module)
-- Since all _functionality_ that can possibly be is in place, I bumped all the
-  way to 0.8. Not battle tested enough to warrant higher.
-- Commented away experimental async read-ahead caching when readahead hint was
-  on. It hasn't broken, but it's an unnecessary risk. Plays safe. You can toy
-  with it yourself if you want to try to milk out some _ms_ performance.
-
-### 2015-03-04: version 0.1.3
-
-- This is the first public commit, and the code has one day of development put
-  into it as of now. More tests are needed so don't count on it being
-  production ready just yet (but soon).
-
-# Install
-
-Use npm or git.
+## npm
 
 ```bash
 $ npm install mmap-utils
 ```
+
+## git
 
 ```bash
 $ git clone https://github.com/ipinfo/mmap-utils.git
@@ -169,10 +69,16 @@ mmap.sync w-buffer, 0, size, true, false
 core-stats = mmap.incore buffer
 ```
 
+# Tests
+
+```bash
+$ npm run test
+```
+
 ### Misc
 
-- Checkout man pages mmap(2), madvise(2), msync(2), mincore(2) for more
-  detailed intell.
+- Checkout man pages `mmap(2)`, `madvise(2)`, `msync(2)`, `mincore(2)` for more
+  detailed intel.
 - The mappings are automatically unmapped when the buffer is garbage collected.
 - Write-mappings need the fd to be opened with "r+", or you'll get a permission
   error (13).
@@ -186,9 +92,3 @@ core-stats = mmap.incore buffer
   Linux), so I didn't throw in flags for that since I found no use.
 - As Ben Noordhuis previously has stated: Supplying hint for a fixed virtual
   memory adress is kinda moot point in JS, so not supported.
-
-# Tests
-
-```bash
-$ npm test
-```
