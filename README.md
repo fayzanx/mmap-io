@@ -112,12 +112,13 @@ the gains by loads of spin-locks, mutexes or such.
 Use npm or git.
 
 ```bash
-$ npm install mmap-io
+$ npm install mmap-utils
 ```
 
 ```bash
-$ git clone https://github.com/ipinfo/mmap-io.git
-$ cd mmap-io
+$ git clone https://github.com/ipinfo/mmap-utils.git
+$ cd mmap-utils
+$ npm install
 $ npm build
 ```
 
@@ -128,7 +129,7 @@ $ npm build
 ```livescript
 # Following code is plastic fruit; not t[ae]sted...
 
-mmap = require "mmap-io"
+mmap = require "mmap-utils"
 fs = require "fs"
 
 some-file = "./foo.bar"
@@ -179,8 +180,8 @@ core-stats = mmap.incore buffer
   buffer, all hell previously unknown to a JS'er breaks loose (segmentation
   fault). It is possible to write some devilous code to intercept the SIGSEGV
   and throw an exception, but let's not do that!
-- `Offset`, and in some cases `length` needs to be a multiple of
-  mmap-io.PAGESIZE (which commonly is 4096)
+- `Offset`, and in some cases `length` needs to be a multiple of `PAGESIZE`
+  (which commonly is 4096)
 - Huge pages are only supported for anonymous / private mappings (well, in
   Linux), so I didn't throw in flags for that since I found no use.
 - As Ben Noordhuis previously has stated: Supplying hint for a fixed virtual

@@ -1,7 +1,7 @@
 {
     "targets": [{
-        "target_name": "mmap-io",
-        "sources": [ "src/mmap-io.cc" ],
+        "target_name": "mmap-utils",
+        "sources": [ "src/mmap-utils.cc" ],
         "include_dirs": [
             "<!(node -e \"require('nan')\")"
         ],

@@ -1,4 +1,4 @@
-# Tests for mmap-io (duh!)
+# Tests for mmap-utils
 #
 # Some lines snatched from Ben Noordhuis test-script of "node-mmap"
 

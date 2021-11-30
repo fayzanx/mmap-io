@@ -224,7 +224,7 @@ JS_FN(mmap_sync_lib_private_) {
 
     // I barfed at the thought of implementing all variants of info-combos in
     // C++, so the arg-shuffling and checking is done in a ES wrapper function
-    // - see "mmap-io.ts"
+    // - see "mmap-utils.ts"
     if (info.Length() != 5) {
         return Nan::ThrowError(
             "sync() takes 5 arguments: (buffer :Buffer, offset :int, length :int, do_blocking_sync :bool, invalidate_pages_and_signal_refresh_to_consumers :bool)."

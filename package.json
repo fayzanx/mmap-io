@@ -1,6 +1,6 @@
 {
-    "name": "@ipinfoio/mmap-io",
-    "version": "1.1.7",
+    "name": "mmap-utils",
+    "version": "2.0.0",
     "license": "MIT",
     "author": {
         "name": "Uman Shahzad",
@@ -8,7 +8,7 @@
         "url": "https://github.com/ipinfo"
     },
     "description": "node.js mmap bindings.",
-    "homepage": "https://github.com/ipinfo/mmap-io",
+    "homepage": "https://github.com/ipinfo/mmap-utils",
     "keywords": [
         "low level",
         "file",
@@ -22,18 +22,18 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/ipinfo/mmap-io.git"
+        "url": "https://github.com/ipinfo/mmap-utils.git"
     },
     "bugs": {
-        "url": "http://github.com/ipinfo/mmap-io/issues"
+        "url": "http://github.com/ipinfo/mmap-utils/issues"
     },
-    "main": "mmap-io.js",
+    "main": "mmap-utils.js",
     "files": [
         "binding.gyp",
         "LICENSE",
         "dist",
-        "mmap-io.d.ts",
-        "mmap-io.js",
+        "mmap-utils.d.ts",
+        "mmap-utils.js",
         "package.json",
         "package-lock.json",
         "README.md",
@@ -43,7 +43,7 @@
         "clean": "rm -rf build dist",
         "build": "npm run build-addon && npm run build-es",
         "build-addon": "node-gyp configure && node-gyp rebuild",
-        "build-es": "./node_modules/.bin/tsc && cp ./dist/mmap-io.d.ts ./",
+        "build-es": "./node_modules/.bin/tsc && cp ./dist/mmap-utils.d.ts ./",
         "prepare": "npm run build",
         "install": "npm run build-addon",
         "test": "./node_modules/.bin/lsc -o ./dist/ -b -c ./src/test.ls && node ./dist/test.js",
