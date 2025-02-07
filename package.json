@@ -3,8 +3,8 @@
     "version": "1.0.0",
     "license": "MIT",
     "author": {
-        "name": "Uman Shahzad",
-        "email": "uman@ipinfo.io",
+        "name": "IPinfo releases",
+        "email": "releases@ipinfo.io",
         "url": "https://github.com/ipinfo"
     },
     "description": "node.js mmap bindings.",
