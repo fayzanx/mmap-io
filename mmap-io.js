@@ -1,1 +1,1 @@
-module.exports = require("./dist/mmap-utils")
+module.exports = require("./dist/mmap-io")
