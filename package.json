@@ -1,6 +1,6 @@
 {
     "name": "@fayzanx/mmap-io",
-    "version": "1.6.11",
+    "version": "1.6.12",
     "license": "MIT",
     "author": {
         "name": "Fayzan Ahmad",
@@ -69,7 +69,7 @@
         "build-binary-x64": "node-pre-gyp rebuild && node-pre-gyp package",
         "build-binary-x86": "node-pre-gyp rebuild --target_arch=ia32 && node-pre-gyp package --target_arch=ia32",
         "publish:github": "node-pre-gyp-github publish",
-        "publish:npm": "npm publish --access public",
+        "publish:npm": "npm publish --access public --registry=https://registry.npmjs.org",
         "publish:all": "npm run publish:github || npm run publish:npm",
         "test": "echo 'tests disabled\n'",
         "watch": "while true; do (npm run build; inotifywait -qre close_write,moved_to --exclude '\\.git' ./src/; ) done;"
