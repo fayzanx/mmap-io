@@ -26,7 +26,7 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          registry-url: 'https://registry.npmjs.org'
+          # registry-url: 'https://registry.npmjs.org'
           # cache: 'yarn'
 
       - name: Add msbuild to PATH
@@ -41,8 +41,7 @@ jobs:
       - name: Fix CRLF line endings on Linux/macOS
         if: startsWith(matrix.build-type.os, 'ubuntu') || startsWith(matrix.build-type.os, 'macos')
         run: |
-          sudo apt-get install -y dos2unix
-          find node_modules/.bin -type f -exec dos2unix {} +
+          sed -i 's/\r$//' node_modules/.bin/node-pre-gyp-github;
       
       - name: Build TypeScript project
         run: yarn build-es
@@ -54,4 +53,4 @@ jobs:
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_PRE_GYP_GITHUB_TOKEN: ${{ secrets.NODE_PRE_GYP_GITHUB_TOKEN }}
-        run: yarn publish:all
+        run: yarn publish:github
