@@ -1,9 +1,8 @@
-/// <reference types="node" />
-declare type FileDescriptor = number;
-declare type MapProtectionFlags = MmapIo["PROT_NONE"] | MmapIo["PROT_READ"] | MmapIo["PROT_WRITE"] | MmapIo["PROT_EXEC"] | 3 | 5 | 6 | 7;
-declare type MapFlags = MmapIo["MAP_PRIVATE"] | MmapIo["MAP_SHARED"] | MmapIo["MAP_NONBLOCK"] | MmapIo["MAP_POPULATE"] | number;
-declare type MapAdvise = MmapIo["MADV_NORMAL"] | MmapIo["MADV_RANDOM"] | MmapIo["MADV_SEQUENTIAL"] | MmapIo["MADV_WILLNEED"] | MmapIo["MADV_DONTNEED"];
-declare type MmapIo = {
+type FileDescriptor = number;
+type MapProtectionFlags = MmapIo["PROT_NONE"] | MmapIo["PROT_READ"] | MmapIo["PROT_WRITE"] | MmapIo["PROT_EXEC"] | 3 | 5 | 6 | 7;
+type MapFlags = MmapIo["MAP_SHARED"] | MmapIo["MAP_PRIVATE"] | MmapIo["MAP_ANONYMOUS"] | MmapIo["MAP_POPULATE"] | MmapIo["MAP_NONBLOCK"] | number;
+type MapAdvise = MmapIo["MADV_NORMAL"] | MmapIo["MADV_RANDOM"] | MmapIo["MADV_SEQUENTIAL"] | MmapIo["MADV_WILLNEED"] | MmapIo["MADV_DONTNEED"];
+type MmapIo = {
     map(size: number, protection: MapProtectionFlags, flags: MapFlags, fd: FileDescriptor, offset?: number, advise?: MapAdvise, name?: Buffer): Buffer;
     advise(buffer: Buffer, offset: number, length: number, advise: MapAdvise): void;
     advise(buffer: Buffer, advise: MapAdvise): void;
@@ -16,8 +15,9 @@ declare type MmapIo = {
     readonly PROT_NONE: 0;
     readonly MAP_SHARED: 1;
     readonly MAP_PRIVATE: 2;
-    readonly MAP_NONBLOCK: 65536;
+    readonly MAP_ANONYMOUS: 32;
     readonly MAP_POPULATE: 32768;
+    readonly MAP_NONBLOCK: 65536;
     readonly MADV_NORMAL: 0;
     readonly MADV_RANDOM: 1;
     readonly MADV_SEQUENTIAL: 2;

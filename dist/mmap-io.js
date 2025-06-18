@@ -9,7 +9,7 @@ const raw_sync_fn_ = mmap_lib_raw_.sync_lib_private__;
 // Hide the original C++11 func from users
 delete mmap_lib_raw_.sync_lib_private__;
 // Take care of all the param juggling here instead of in C++ code, by making
-// some overloads, and doing some argument defaults /ozra
+// some overloads, and doing some argument defaults
 mmap_lib_raw_.sync = function (buf, par_a, par_b, par_c, par_d) {
     if (typeof par_a === "boolean") {
         raw_sync_fn_(buf, 0, buf.length, par_a, par_b || false);

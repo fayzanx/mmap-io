@@ -1,7 +1,7 @@
 # Compiled target .js files (build from LS) and deps
-mmap-utils.d.ts
+mmap-io.d.ts
 test.js
-mmap-utils.s
+mmap-io.s
 tmp-mmap-file
 
 build/

@@ -40,13 +40,13 @@
     "bugs": {
         "url": "http://github.com/fayzanx/mmap-io/issues"
     },
-    "main": "mmap-utils.js",
+    "main": "mmap-io.js",
     "files": [
         "binding.gyp",
         "LICENSE",
         "dist",
-        "mmap-utils.d.ts",
-        "mmap-utils.js",
+        "mmap-io.d.ts",
+        "mmap-io.js",
         "package.json",
         "package-lock.json",
         "README.md",
