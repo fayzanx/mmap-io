@@ -4,6 +4,10 @@
 ## Note
 - This is a fork of [ARyaskov/mmap-io](https://github.com/ARyaskov/mmap-io) -> [ozra/mmap-io](https://github.com/ozra/mmap-io) and [ipinfo/mmap-utils](https://github.com/ipinfo/mmap-utils)
 
+This fork fixes a couple of things
+- Ability to be used with >= Node v22
+- Ability to handle large files being loaded into the map
+
 ## Quick info
 
 - Long story short: with this addon you can increase performance of your file interactions by memory mapping files, 
@@ -32,19 +36,10 @@ Otherwise it requires a C++17 compiler and Python 3.12+ on your machine to build
 
 ```
 
-
-# Fork Notice
-
-This is a fork of mmap-io (https://github.com/Widdershin/mmap-io/), as the upstream repo is no longer maintained and it didn't compile well on my machine for newer Node.js.
-
-This version of mmap-io builds on Node up to 22, and provides binaries for Windows and macOS via @mapbox/node-pre-gyp.
-
 # Author's notice: 
 ## Mmap for Node.js
-mmap(2) / madvise(2) / msync(2) / mincore(2) for node.js revisited.
+Please refer for man pages for mmap(2) / madvise(2) / msync(2) / mincore(2).
 
-**NOTE**: this is a fork of https://github.com/ozra/mmap-io as that repo is
-unmaintained.
 
 # Installation
 
