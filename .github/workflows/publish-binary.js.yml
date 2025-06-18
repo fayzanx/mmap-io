@@ -15,8 +15,8 @@ jobs:
       matrix:
         build-type: [
           {os: "ubuntu-latest", arch: "x64"},
-          {os: "windows-2021", arch: "x64"},
-          {os: "windows-2021", arch: "x86"},
+          {os: "windows-2019", arch: "x64"},
+          {os: "windows-2019", arch: "x86"},
         ]
         node-version: [18.x, 22.x]
 
@@ -26,7 +26,6 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: ${{ matrix.node-version }}
-          # registry-url: 'https://registry.npmjs.org'
           # cache: 'yarn'
 
       - name: Add msbuild to PATH
@@ -49,8 +48,19 @@ jobs:
       - name: Build binary
         run: yarn build-binary-${{ matrix.build-type.arch }}
 
-      - name: Push binaries
+      - name: Publish Binaries to Github Release
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
           NODE_PRE_GYP_GITHUB_TOKEN: ${{ secrets.NODE_PRE_GYP_GITHUB_TOKEN }}
         run: yarn publish:github
+
+      - name: Prepare NPM Publish
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+          registry-url: 'https://registry.npmjs.org'
+
+      - name: Publish Binaries to NPM
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+        run: yarn publish:npm
