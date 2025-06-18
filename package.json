@@ -1,6 +1,6 @@
 {
     "name": "@fayzanx/mmap-io",
-    "version": "1.6.2",
+    "version": "1.6.3",
     "license": "MIT",
     "author": {
         "name": "Oscar Campbell",
@@ -70,9 +70,9 @@
     },
     "devDependencies": {
         "@types/node": "^18.19.41",
-        "node-pre-gyp-github": "^1.4.6",
-        "typescript": "^5.5.3",
-        "tsx": "^4.16.2"
+        "node-pre-gyp-github": "^2.0.0",
+        "tsx": "^4.16.2",
+        "typescript": "^5.5.3"
     },
     "dependencies": {
         "@mapbox/node-pre-gyp": "^1.0.11",

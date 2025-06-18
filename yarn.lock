@@ -875,10 +875,10 @@ node-gyp@^10.1.0:
     tar "^6.2.1"
     which "^4.0.0"
 
-node-pre-gyp-github@^1.4.6:
-  version "1.4.6"
-  resolved "https://registry.yarnpkg.com/node-pre-gyp-github/-/node-pre-gyp-github-1.4.6.tgz#d55381475d5e46f3c5859275b78bf12d322f1141"
-  integrity sha512-+s+4hEv0O/AsmV+96O7Pkw5/82IipeW4SQ84pNudF42jy6Ec38KCe29t55y+TbJqvgfTbWVHVrg+yb89ef/1XA==
+node-pre-gyp-github@^2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/node-pre-gyp-github/-/node-pre-gyp-github-2.0.0.tgz#8095f4a7bdee418df9406a774ad4719d67dc571f"
+  integrity sha512-cTc6dRK3Sa4z+Z/1QAtAQErnaePir83ZveUz80VLK11zeYokt4cNJ6Aexoi58cSJ7xGvgZJImUeD1vIl2e7pjQ==
   dependencies:
     "@octokit/rest" "20.1.1"
     commander "12.0.0"
