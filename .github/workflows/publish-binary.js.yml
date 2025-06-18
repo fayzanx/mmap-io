@@ -50,6 +50,8 @@ jobs:
         run: yarn build-binary-${{ matrix.build-type.arch }}
 
       - name: Set up npm auth
+        env:
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: echo "//registry.npmjs.org/:_authToken=${{ secrets.NPM_TOKEN }}" > ~/.npmrc
 
       - name: Push binaries
