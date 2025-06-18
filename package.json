@@ -9,8 +9,8 @@
     },
     "contributors": [
         {
-          "name": "Fayzan Ahmad",
-          "url": "https://github.com/fayzanx"
+            "name": "Fayzan Ahmad",
+            "url": "https://github.com/fayzanx"
         }
     ],
     "binary": {
@@ -78,6 +78,7 @@
         "errno": "*",
         "nan": "^2.19.0",
         "node-gyp": "^10.1.0",
-        "run-script-os": "^1.1.1"
+        "run-script-os": "^1.1.1",
+        "yarn": "^1.22.22"
     }
 }

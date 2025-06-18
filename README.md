@@ -63,17 +63,20 @@ It should be noted that mem-mapping is by nature potentially blocking, and _shou
 - Add support for Node 22
 
 # Install
-Use npm or git.
+Use npm or yarn or git.
 
+```bash
+$ npm install @fayzanx/mmap-io
 ```
-npm install @riaskov/mmap-io
+```bash
+$ yarn add @fayzanx/mmap-io
 ```
 
 ```bash
 $ git clone https://github.com/fayzanx/mmap-io.git
 $ cd mmap-io
-$ npm build
-$ npm install
+$ yarn build
+$ yarn install
 ```
 
 ### Good to Know (TM)
@@ -92,7 +95,7 @@ $ npm install
 # Tests
 
 ```bash
-$ npm run test
+$ yarn test
 ```
 
 ### Misc
