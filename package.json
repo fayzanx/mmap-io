@@ -1,6 +1,6 @@
 {
-    "name": "@riaskov/mmap-io",
-    "version": "1.4.3",
+    "name": "@fayzanx/mmap-io",
+    "version": "1.6.0",
     "license": "MIT",
     "author": {
         "name": "Oscar Campbell",
@@ -9,12 +9,8 @@
     },
     "contributors": [
         {
-          "name": "Nick Johnstone",
-          "url": "https://github.com/Widdershin"
-        },
-        {
-          "name": "Andrei Riaskov",
-          "email": "code@riaskov.com"
+          "name": "Fayzan Ahmad",
+          "url": "https://github.com/fayzanx"
         }
     ],
     "binary": {
@@ -22,16 +18,16 @@
         "module_path": "./build/binding/{configuration}/{node_abi}-{platform}-{arch}/",
         "remote_path": "./{version}/",
         "package_name": "{module_name}-v{version}-{node_abi}-{platform}-{arch}.tar.gz",
-        "host": "https://github.com/ARyaskov/mmap-io/releases/download/"
+        "host": "https://github.com/fayzanx/mmap-io/releases/download/"
     },
     "description": "Node.js mmap bindings revisited.",
-    "homepage": "https://github.com/ARyaskov/mmap-io",
+    "homepage": "https://github.com/fayzanx/mmap-io",
     "keywords": [
         "low level",
         "file",
         "memory mapped",
         "mmap",
-        "advise",
+        "madvise",
         "sync",
         "shared memory",
         "C++",
@@ -39,18 +35,18 @@
     ],
     "repository": {
         "type": "git",
-        "url": "https://github.com/ARyaskov/mmap-io.git"
+        "url": "https://github.com/fayzanx/mmap-io.git"
     },
     "bugs": {
-        "url": "http://github.com/ARyaskov/mmap-io/issues"
+        "url": "http://github.com/fayzanx/mmap-io/issues"
     },
-    "main": "mmap-io.js",
+    "main": "mmap-utils.js",
     "files": [
         "binding.gyp",
         "LICENSE",
         "dist",
-        "mmap-io.d.ts",
-        "mmap-io.js",
+        "mmap-utils.d.ts",
+        "mmap-utils.js",
         "package.json",
         "package-lock.json",
         "README.md",

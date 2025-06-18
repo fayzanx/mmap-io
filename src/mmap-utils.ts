@@ -27,10 +27,11 @@ type MapProtectionFlags =
 // >
 
 type MapFlags =
-    | MmapIo["MAP_PRIVATE"]
     | MmapIo["MAP_SHARED"]
-    | MmapIo["MAP_NONBLOCK"]
+    | MmapIo["MAP_PRIVATE"]
+    | MmapIo["MAP_ANONYMOUS"]
     | MmapIo["MAP_POPULATE"]
+    | MmapIo["MAP_NONBLOCK"]
     | number
 
 type MapAdvise =
@@ -80,10 +81,13 @@ type MmapIo = {
     readonly PROT_WRITE: 2
     readonly PROT_EXEC: 4
     readonly PROT_NONE: 0
+
     readonly MAP_SHARED: 1
     readonly MAP_PRIVATE: 2
-    readonly MAP_NONBLOCK: 65536
+    readonly MAP_ANONYMOUS: 32
     readonly MAP_POPULATE: 32768
+    readonly MAP_NONBLOCK: 65536
+
     readonly MADV_NORMAL: 0
     readonly MADV_RANDOM: 1
     readonly MADV_SEQUENTIAL: 2
@@ -100,7 +104,7 @@ const raw_sync_fn_ = mmap_lib_raw_.sync_lib_private__
 delete mmap_lib_raw_.sync_lib_private__
 
 // Take care of all the param juggling here instead of in C++ code, by making
-// some overloads, and doing some argument defaults /ozra
+// some overloads, and doing some argument defaults
 mmap_lib_raw_.sync = function(
     buf: Buffer,
     par_a?: any,
