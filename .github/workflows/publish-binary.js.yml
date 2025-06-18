@@ -41,7 +41,7 @@ jobs:
       - name: Fix CRLF line endings on Linux/macOS
         if: startsWith(matrix.build-type.os, 'ubuntu') || startsWith(matrix.build-type.os, 'macos')
         run: |
-          sed -i 's/\r$//' node_modules/.bin/node-pre-gyp-github;
+          sed -i 's/\r$//' node_modules/node-pre-gyp-github/bin/node-pre-gyp-github.js;
       
       - name: Build TypeScript project
         run: yarn build-es

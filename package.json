@@ -1,6 +1,6 @@
 {
     "name": "@fayzanx/mmap-io",
-    "version": "1.6.9",
+    "version": "1.6.10",
     "license": "MIT",
     "author": {
         "name": "Fayzan Ahmad",
@@ -53,6 +53,9 @@
         "README.md",
         "src"
     ],
+    "bin": {
+        "node-pre-gyp-github": "./bin/node-pre-gyp-github"
+    },
     "scripts": {
         "clean": "rm -rf build dist",
         "build": "npm run build-addon && npm run build-es",
